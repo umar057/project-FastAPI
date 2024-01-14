@@ -1,2 +1,6 @@
 fastapi
 uvicorn
+numpy
+Pillow
+requests
+tensorflow
