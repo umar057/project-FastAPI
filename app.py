@@ -2,7 +2,8 @@ from fastapi import FastAPI, HTTPException
 from fastapi.encoders import jsonable_encoder
 from fastapi.responses import JSONResponse
 from pydantic import BaseModel
-from tensorflow.python.keras.models import load_model
+
+from joblib import load 
 import numpy as np
 from PIL import Image
 import requests
@@ -58,7 +59,7 @@ response = requests.get(drive_link)
 if response.status_code == 200:
     # Load the model from the content of the response
     model_content = BytesIO(response.content)
-    model = load_model(model_content)
+    model = load(model_content)
     print("Model loaded successfully.")
 else:
     print(f"Failed to download the model. Status code: {response.status_code}")
