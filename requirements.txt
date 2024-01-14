@@ -3,4 +3,4 @@ uvicorn
 numpy
 Pillow
 requests
-tensorflow
+joblib
