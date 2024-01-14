@@ -3,4 +3,4 @@ uvicorn
 numpy
 Pillow
 requests
-tensorflow
+tensorflow>=2.6,<3.0
