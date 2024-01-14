@@ -1,0 +1,5 @@
+# .slugignore
+__pycache__/
+tests/
+docs/
+data/
