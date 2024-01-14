@@ -110,6 +110,21 @@ async def predict(request: PredictionRequest):
 def index():
     return {"details":"Hello!!"}
     
-if __name__ == '__main__':
-    import uvicorn
-    uvicorn.run(app, host='127.0.0.1', port=8000)
+
+@app.get('/p')
+async def predict(request: PredictionRequest):
+    try:
+        # Preprocess the image
+        processed_image = preprocess_image(request.image_path)
+
+        # Make a prediction
+        prediction = model.predict(processed_image)
+
+        # Assuming binary classification, convert the prediction to a human-readable label
+        label = "Glaucoma" if prediction > 0.5 else "Not Glaucoma"
+
+        response = {'prediction': label}
+        return JSONResponse(content=jsonable_encoder(response), status_code=200)
+
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
